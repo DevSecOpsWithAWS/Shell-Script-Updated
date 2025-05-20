@@ -53,3 +53,14 @@ then
 else
   echo -e "$Y GIT is already installed $N" &>>LOG_FILE_NAME
 fi
+
+dnf list installed node &>>LOG_FILE_NAME
+echo "$?"
+
+if [ $? -ne 0 ]
+then
+  dnf install node -y &>>LOG_FILE_NAME
+  VALIDATE $? "Node installation" &>>LOG_FILE_NAME
+else
+  echo -e "$Y Node is already installed $N" &>>LOG_FILE_NAME
+fi
