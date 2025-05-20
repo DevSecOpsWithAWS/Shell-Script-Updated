@@ -4,9 +4,12 @@
 
 
 USERID=$(id -u)
+
 if [ $USERID -ne 0 ]
   echo "Error:: You must have root privileges to run this script"
   exit 1
+else
+  echo "You have root privileges"
+  dnf install mysql -y
 fi
 
-dnf install mysql -y
