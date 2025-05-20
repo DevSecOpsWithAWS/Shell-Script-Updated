@@ -12,6 +12,9 @@ LOG_FILE=$( echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
+
+echo "Log file created at $LOG_FILE_NAME" &>>LOG_FILE_NAME
+
 if [ $USERID -ne 0 ]
 then
   echo "Error:: You must have root privileges to run this script" 
@@ -23,10 +26,10 @@ fi
 VALIDATE(){
   if [ $1 -ne 0 ]
   then
-    echo -e "$2...$R Failure $N" &>>LOG_FILE_NAME
+    echo -e "$2...$R Failure $N" 
     exit 1
   else
-    echo "$2 ... $G Success $N" &>>LOG_FILE_NAME
+    echo "$2 ... $G Success $N" 
   fi
 }
 
@@ -37,9 +40,9 @@ echo "$?"
 if [ $? -ne 0 ]
 then
   dnf install mysql -y &>>LOG_FILE_NAME
-  VALIDATE $? "MySQL installation" &>>LOG_FILE_NAME
+  VALIDATE $? "MySQL installation"
 else
-  echo -e "$Y MySQL is already installed $N" &>>LOG_FILE_NAME
+  echo -e "$Y MySQL is already installed $N"
 fi
 
 
@@ -49,18 +52,18 @@ echo "$?"
 if [ $? -ne 0 ]
 then
   dnf install git -y &>>LOG_FILE_NAME
-  VALIDATE $? "GIT installation" &>>LOG_FILE_NAME
+  VALIDATE $? "GIT installation"
 else
-  echo -e "$Y GIT is already installed $N" &>>LOG_FILE_NAME
+  echo -e "$Y GIT is already installed $N"
 fi
 
-dnf list installed node &>>LOG_FILE_NAME
+dnf list installed gcc &>>LOG_FILE_NAME
 echo "$?"
 
 if [ $? -ne 0 ]
 then
-  dnf install node -y &>>LOG_FILE_NAME
-  VALIDATE $? "Node installation" &>>LOG_FILE_NAME
+  dnf install gcc -y &>>LOG_FILE_NAME
+  VALIDATE $? "gcc installation" 
 else
-  echo -e "$Y Node is already installed $N" &>>LOG_FILE_NAME
+  echo -e "$Y gcc is already installed $N" 
 fi
