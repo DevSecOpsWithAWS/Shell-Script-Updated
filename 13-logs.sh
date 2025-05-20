@@ -67,3 +67,14 @@ then
 else
   echo -e "$Y gcc is already installed $N" 
 fi
+
+dnf list installed abcd &>>LOG_FILE_NAME
+echo "$?"
+
+if [ $? -ne 0 ]
+then
+  dnf install abcd -y &>>LOG_FILE_NAME
+  VALIDATE $? "abcd installation" 
+else
+  echo -e "$Y abcd is already installed $N" 
+fi
