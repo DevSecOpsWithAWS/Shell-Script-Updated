@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-echo ("$1 --> first argument")
+echo (" $1 --> first argument")
 echo ("$2 --> second argument")
 echo ("$3 --> third argument")
 echo ("$0 --> Script Name")
