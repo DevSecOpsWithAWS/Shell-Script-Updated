@@ -11,7 +11,6 @@ then
   exit 1
 else
   echo "You have root privileges"
-  dnf install mysql -y
 fi
 
 dnf list installed mysql
@@ -29,4 +28,22 @@ then
   fi
 else
   echo "MySQL is already installed"
+fi
+
+
+dnf list installed git1
+echo "$?"
+
+if [ $? -ne 0 ]
+then
+  dnf install git -y
+  if [ $? -ne 0]
+  then
+    echo "Installing GIT...Failure"
+    exit 1
+  else
+    echo "GIT installation completed successfully"
+  fi
+else
+  echo "GIT is already installed"
 fi
