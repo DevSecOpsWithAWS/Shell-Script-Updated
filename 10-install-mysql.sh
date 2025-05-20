@@ -10,6 +10,7 @@ then
   echo "Error:: You must have root privileges to run this script"
   exit 1
 else
+  echo "$?"
   echo "You have root privileges"
   dnf install mysql -y
 fi
