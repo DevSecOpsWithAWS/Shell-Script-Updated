@@ -13,7 +13,7 @@ TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
 
-echo "Log file created at $LOG_FILE_NAME" &>>LOG_FILE_NAME
+echo "Log file created at $LOG_FILE_NAME" &>>$LOG_FILE_NAME
 
 if [ $USERID -ne 0 ]
 then
@@ -34,46 +34,46 @@ VALIDATE(){
 }
 
 
-dnf list installed mysql &>>LOG_FILE_NAME
+dnf list installed mysql &>>$LOG_FILE_NAME
 echo "$?"
 
 if [ $? -ne 0 ]
 then
-  dnf install mysql -y &>>LOG_FILE_NAME
+  dnf install mysql -y &>>$LOG_FILE_NAME
   VALIDATE $? "MySQL installation"
 else
   echo -e "$Y MySQL is already installed $N"
 fi
 
 
-dnf list installed git &>>LOG_FILE_NAME
+dnf list installed git &>>$LOG_FILE_NAME
 echo "$?"
 
 if [ $? -ne 0 ]
 then
-  dnf install git -y &>>LOG_FILE_NAME
+  dnf install git -y &>>$LOG_FILE_NAME
   VALIDATE $? "GIT installation"
 else
   echo -e "$Y GIT is already installed $N"
 fi
 
-dnf list installed gcc &>>LOG_FILE_NAME
+dnf list installed gcc &>>$LOG_FILE_NAME
 echo "$?"
 
 if [ $? -ne 0 ]
 then
-  dnf install gcc -y &>>LOG_FILE_NAME
+  dnf install gcc -y &>>$LOG_FILE_NAME
   VALIDATE $? "gcc installation" 
 else
   echo -e "$Y gcc is already installed $N" 
 fi
 
-dnf list installed abcd &>>LOG_FILE_NAME
+dnf list installed abcd &>>$LOG_FILE_NAME
 echo "$?"
 
 if [ $? -ne 0 ]
 then
-  dnf install abcd -y &>>LOG_FILE_NAME
+  dnf install abcd -y &>>$LOG_FILE_NAME
   VALIDATE $? "abcd installation" 
 else
   echo -e "$Y abcd is already installed $N" 
