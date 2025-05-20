@@ -31,7 +31,7 @@ else
 fi
 
 
-dnf list installed git1
+dnf list installed git
 echo "$?"
 
 if [ $? -ne 0 ]
