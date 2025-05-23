@@ -38,4 +38,10 @@ FILES_TO_DELETE=$(find $SOURCE_DIR -name "*.log" -mtime +14)
 
 echo "Files to delete: $FILES_TO_DELETE"
 
-
+while read -r file
+do
+  echo "Deleting file: $file"
+  rm -rf $file
+  VALIDATE $? "Deleting file $file"
+done <<< "$FILES_TO_DELETE"
+echo "All log files older than 14 days have been deleted."
