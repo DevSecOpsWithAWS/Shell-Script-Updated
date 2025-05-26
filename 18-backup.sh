@@ -12,6 +12,14 @@ SOURCE_DIR=$1
 DESTINATION_DIR=$2
 DAYS=${3:-14} # Default to 14 days if not provided
 
+if [ $USERID -ne 0 ]
+then
+  echo "Error:: You must have root privileges to run this script" 
+  exit 1
+else
+  echo "You have root privileges"
+fi
+
 LOGS_FOLDER="/var/logs/shell-script"
 mkdir -p $LOGS_FOLDER
 LOG_FILE=$( echo $0 | cut -d "." -f1)
@@ -21,13 +29,7 @@ LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
 echo "Log file created at $LOG_FILE_NAME" &>>$LOG_FILE_NAME
 
-if [ $USERID -ne 0 ]
-then
-  echo "Error:: You must have root privileges to run this script" 
-  exit 1
-else
-  echo "You have root privileges"
-fi
+
 
 VALIDATE(){
   if [ $1 -ne 0 ]
