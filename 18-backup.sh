@@ -28,7 +28,7 @@ LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
 
 #echo "Log file created at $LOG_FILE_NAME" &>>$LOG_FILE_NAME
-
+#This is a backup file
 
 
 VALIDATE(){
